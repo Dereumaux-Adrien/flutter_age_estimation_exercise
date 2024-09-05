@@ -27,6 +27,7 @@ As an app user, I would like to be able to repeat the assessment with a differen
 
 ## Timestamps
 Started (everything set up) at 19:00
+First "full" version of the app as required at 22:00
 
 ## Getting Started
 
