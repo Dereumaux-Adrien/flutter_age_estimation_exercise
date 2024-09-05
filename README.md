@@ -31,4 +31,6 @@ First "full" version of the app as required at 22:00
 
 ## Getting Started
 
+## Ressources
 
+Using Question mark icons created by Freepik - Flaticon <a href="https://www.flaticon.com/free-icons/question-mark" title="question mark icons">Question mark icons created by Freepik - Flaticon</a>
