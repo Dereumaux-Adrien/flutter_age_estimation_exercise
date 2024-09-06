@@ -27,7 +27,14 @@ As an app user, I would like to be able to repeat the assessment with a differen
 
 ## Timestamps
 Started (everything set up) at 19:00
+
 First "full" version of the app as required at 22:00
+
+Added Icons and splash screens at 22:30
+
+After sleeping on it, added error management the next day in about 30 minutes (16:30 - 17:00)
+
+
 
 ## Getting Started
 
