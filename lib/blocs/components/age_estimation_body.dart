@@ -42,10 +42,22 @@ class AgeEstimationBody extends StatelessWidget {
                   ],
                 )
               : ageGuessingState is AgeGuessed
-                  ? Text(
-                      '${ageGuessingState.searchedName.name} your age is ${ageGuessingState.searchedName.age}',
+                  ? Padding(
+                      padding:
+                          const EdgeInsets.fromLTRB(30.0, 10.0, 30.0, 10.0),
+                      child: Text(
+                        '${ageGuessingState.searchedName.name} your age is ${ageGuessingState.searchedName.age}',
+                      ),
                     )
-                  : const CircularProgressIndicator());
+                  : ageGuessingState is AgeNotGuessed
+                      ? Padding(
+                          padding:
+                              const EdgeInsets.fromLTRB(30.0, 10.0, 30.0, 10.0),
+                          child: Text(
+                            ageGuessingState.errorMessage,
+                          ),
+                        )
+                      : const CircularProgressIndicator());
     });
   }
 }

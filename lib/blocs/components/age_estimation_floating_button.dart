@@ -23,7 +23,8 @@ class AgeEstimationFloatingButton extends StatelessWidget {
                     textEditingController.text.isNotEmpty) {
                   BlocProvider.of<AgeGuessingBloc>(context)
                       .add(RequestAge(name: textEditingController.text));
-                } else if (ageGuessingState is AgeGuessed) {
+                } else if (ageGuessingState is AgeGuessed ||
+                    ageGuessingState is AgeNotGuessed) {
                   BlocProvider.of<AgeGuessingBloc>(context).add(Reset());
                 }
               },

@@ -24,7 +24,7 @@ class AgeGuessing extends AgeGuessingState {
   String toString() => 'AgeGuessing { name: $name }';
 }
 
-/// Request is being made to agify.io
+/// Request has been received from agify.io
 class AgeGuessed extends AgeGuessingState {
   /// Received result from agify
   final SearchedName searchedName;
@@ -34,4 +34,16 @@ class AgeGuessed extends AgeGuessingState {
 
   @override
   String toString() => 'AgeGuessed { searchedName: $searchedName }';
+}
+
+/// Request did not work
+class AgeNotGuessed extends AgeGuessingState {
+  /// Fully written error message to show user
+  final String errorMessage;
+
+  /// Constructor
+  const AgeNotGuessed({required this.errorMessage});
+
+  @override
+  String toString() => 'AgeNotGuessed { errorMessage: $errorMessage }';
 }

@@ -30,6 +30,18 @@ class AgeReceived extends AgeGuessingEvent {
   String toString() => 'AgeReceived { searchedName: $searchedName }';
 }
 
+/// Didn't get an answer from agify.io
+class AgeNotReceived extends AgeGuessingEvent {
+  /// true if daily limit is reached, false else
+  final bool limitReached;
+
+  /// Constructor
+  const AgeNotReceived({required this.limitReached});
+
+  @override
+  String toString() => 'AgeNotReceived';
+}
+
 /// Reset to be able to guess another name
 class Reset extends AgeGuessingEvent {
   /// Constructor

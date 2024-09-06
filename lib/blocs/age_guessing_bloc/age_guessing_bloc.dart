@@ -17,6 +17,8 @@ class AgeGuessingBloc extends Bloc<AgeGuessingEvent, AgeGuessingState> {
       yield* _mapRequestAgeToState(event);
     } else if (event is AgeReceived) {
       yield* _mapAgeReceivedToState(event);
+    } else if (event is AgeNotReceived) {
+      yield* _mapAgeNotReceivedToState(event);
     } else if (event is Reset) {
       yield* _mapResetToState(event);
     }
@@ -24,26 +26,36 @@ class AgeGuessingBloc extends Bloc<AgeGuessingEvent, AgeGuessingState> {
 
   Stream<AgeGuessingState> _mapRequestAgeToState(RequestAge event) async* {
     yield AgeGuessing(name: event.name);
-    final response = await http.get(Uri.parse(
-        // 'https://jsonplaceholder.typicode.com/albums/1'
-      'https://api.agify.io?name=${event.name.replaceAll(" ", "%20")}',
-    ));
+    final response = await http
+        .get(Uri.parse(
+      // Added the replaceAll to avoid any issues with the spaces
+      'https://api.agify.io?name=${event.name}',
+    ))
+        .catchError((error) {
+      return http.Response("{}", 444);
+    });
 
-    print('RESPONSE: ${response.body}\n\n');
+    print('RESPONSE: ${response.body}, STATUSCODE: ${response.statusCode}\n\n');
 
     if (response.statusCode == 200) {
       final searchedName = SearchedName.fromJson(
           jsonDecode(response.body) as Map<String, dynamic>);
       add(AgeReceived(searchedName: searchedName));
     } else {
-      // If the server did not return a 200 OK response,
-      // then throw an exception.
-      throw Exception('Failed to load');
+      add(AgeNotReceived(limitReached: response.statusCode == 429));
     }
   }
 
   Stream<AgeGuessingState> _mapAgeReceivedToState(AgeReceived event) async* {
     yield AgeGuessed(searchedName: event.searchedName);
+  }
+
+  Stream<AgeGuessingState> _mapAgeNotReceivedToState(
+      AgeNotReceived event) async* {
+    yield AgeNotGuessed(
+        errorMessage: event.limitReached
+            ? "It seems we have used our allowed guesses for now, please try again later"
+            : "I couldn't guess your age, please check your internet connection");
   }
 
   Stream<AgeGuessingState> _mapResetToState(Reset event) async* {
@@ -55,11 +67,5 @@ class AgeGuessingBloc extends Bloc<AgeGuessingEvent, AgeGuessingState> {
     print('EVENT: ${transition.event}\n');
     print('NEW STATE: ${transition.nextState}\n');
     super.onTransition(transition);
-  }
-
-  @override
-  Future<void> close() {
-    // _locationSubscription?.cancel();
-    return super.close();
   }
 }
