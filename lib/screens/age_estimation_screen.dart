@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_age_estimation_exercise/blocs/age_guessing_bloc/age_guessing.dart';
-import 'package:flutter_age_estimation_exercise/blocs/components/age_estimation_body.dart';
-import 'package:flutter_age_estimation_exercise/blocs/components/age_estimation_floating_button.dart';
+import 'package:flutter_age_estimation_exercise/components/age_estimation_body.dart';
+import 'package:flutter_age_estimation_exercise/components/age_estimation_floating_button.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 /// View of the GeoMap

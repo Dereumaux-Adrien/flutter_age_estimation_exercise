@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_age_estimation_exercise/blocs/age_guessing_bloc/age_guessing.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../age_guessing_bloc/age_guessing.dart';
 
 /// Widget in the body of the AgeEstimationScreen
 class AgeEstimationBody extends StatelessWidget {

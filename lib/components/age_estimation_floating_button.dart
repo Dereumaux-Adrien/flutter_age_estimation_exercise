@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_age_estimation_exercise/blocs/age_guessing_bloc/age_guessing.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../age_guessing_bloc/age_guessing.dart';
 
 /// Floating button on AgeEstimationScreen
 class AgeEstimationFloatingButton extends StatelessWidget {
